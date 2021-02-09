@@ -9,7 +9,7 @@ using System.Text;
 
 namespace DataAccess.Concrete
 {
-    public class InMemory:ICarDal
+    public class InMemory:ICarDAl
     {
         List<Car> _Cars;
         public InMemory()
