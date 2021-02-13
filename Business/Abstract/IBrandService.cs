@@ -2,14 +2,13 @@
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
-
 using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IColorService
+    public interface IBrandService
     {
-        IDataResult<List<Color>> GetAll();
-        IDataResult<Color> GetById(int colorId);
+        IDataResult<List<Brand>> GetAll();
+        IDataResult<Brand> GetById(int brandId);
     }
 }
