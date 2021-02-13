@@ -26,7 +26,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            return new DataResult<List<Car>>(_carDal.GetAll(),true,"Ürünler Listelendi.");
+            return new DataResult<List<Car>>(_carDal.GetAll(),true,Messages.CarsListed);
         }
 
         public IDataResult<List<Car>> GetCarsByBrandId(int id)
