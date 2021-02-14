@@ -13,7 +13,7 @@ namespace Business.Concrete
     public class RentalManager : IRentalService
     {
         IRentalDal _rentalDal;
-        private EfRentalDal efRentalDal;
+        EfRentalDal efRentalDal;
 
         public RentalManager(IRentalDal rentalDal)
         {
@@ -21,8 +21,8 @@ namespace Business.Concrete
         }
 
         public RentalManager(EfRentalDal efRentalDal)
-        {
-            this.efRentalDal = efRentalDal;
+        {       
+                this.efRentalDal = efRentalDal;
         }
 
         public IResult Add(Rental rental)

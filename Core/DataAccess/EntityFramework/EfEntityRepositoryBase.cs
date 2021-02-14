@@ -9,16 +9,17 @@ using System.Text;
 namespace Core.DataAccess.EntityFramework
 {
     public class EfEntityRepositoryBase<TEntity, TContext> : IEntitiyRepository<TEntity>
-        where TEntity : class, IEntity, new()
-        where TContext : DbContext, new()
+         where TEntity : class, IEntity, new()
+         where TContext : DbContext, new()
     {
         public void Add(TEntity entity)
         {
-            using (TContext context=new TContext())
+            using (TContext context = new TContext())
             {
                 var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
                 context.SaveChanges();
+
             }
         }
 

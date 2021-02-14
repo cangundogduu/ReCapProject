@@ -12,73 +12,76 @@ namespace ConsoleUI
         {
             {
                 CarTest();
-                BrandTest();
-                UserAdd();
-                CustomerAdd();
-                RentalAdd();
+                //BrandTest();
+                //UserAdd();
+                //CustomerAdd();
+               // RentalAdd();
 
             }
+        }
 
-             void RentalAdd()
+        private static void RentalAdd()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.GetAll();
+            Console.WriteLine(result.Data);
+        }
+
+        private static void CustomerAdd()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            var result = customerManager.Add(new Customer {  CompanyName = "Renault" });
+            Console.WriteLine(result.Message);
+        }
+
+        private static void UserAdd()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            var result = userManager.Add(new User { FirstName = "Can", LastName = "Gündoğdu", Email = "gundogdu.can@hotmail.com", Password = "cc11" }) ;
+            Console.WriteLine(result.Message);
+        }
+
+        private static void BrandTest()
+        {
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            var result = brandManager.GetAll();
+            if (result.Success == true)
             {
-                RentalManager rentalManager = new RentalManager(new EfRentalDal());
-                var result = rentalManager.Add(new Rental { CarId = 1, CustomerId = 1, RentTime = DateTime.Now, Id = 1 });
+                foreach (var brand in result.Data)
+                {
+                    Console.WriteLine(brand.BrandName);
+                }
+                Console.WriteLine(result.Message);
+            }
+            else
+            {
                 Console.WriteLine(result.Message);
             }
 
-            void CustomerAdd()
+        }
+
+        private static void CarTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            var result = carManager.GetAll();
+            if (result.Success)
             {
-                CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-                var result = customerManager.Add(new Customer { UserId = 2, CompanyName = "Renault" });
+                foreach (var car in result.Data)
+                {
+                    
+                    Console.WriteLine(car.CarName);
+
+                }
+                
+            }
+            else
+            {
                 Console.WriteLine(result.Message);
-            }
-
-            void UserAdd()
-            {
-                UserManager userManager = new UserManager(new EfUserDal());
-                var result = userManager.Add(new User { FirstName = "Can", LastName = "Gündoğdu", Email = "gundogdu.can@hotmail.com", Password = "cc11" });
-                Console.WriteLine(result.Message);
-            }
-
-             void BrandTest()
-            {
-                BrandManager brandManager = new BrandManager(new EfBrandDal());
-                var result = brandManager.GetAll();
-                if (result.Success == true)
-                {
-                    foreach (var brand in result.Data)
-                    {
-                        Console.WriteLine(brand.BrandName);
-                    }
-                    Console.WriteLine(result.Message);
-                }
-                else
-                {
-                    Console.WriteLine(result.Message);
-                }
 
             }
 
-             void CarTest()
-            {
-                CarManager carManager = new CarManager(new EfCarDal());
-                var result = carManager.GetCarDetails();
-                if (result.Success == true)
-                {
-                    foreach (var car in result.Data)
-                    {
-                        Console.WriteLine(car.CarName + ":" + car.BrandName + ":" + car.ColorName );
-
-                    }
-                    Console.WriteLine(result.Message);
-                }
-                else
-                {
-                    Console.WriteLine(result.Message);
-
-                }
-
-                Console.ReadLine();
+            Console.ReadLine();
         }
     }
 }
+
