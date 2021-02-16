@@ -13,6 +13,14 @@ namespace Business.Constants
         internal static string MainteanceTime = "Sistem Bakımda";
         internal static string CarsListed = "Arabalar Listelendi.";
         public static string BrandsListed = "Markalar Listelendi.";
+        public static string BrandAdded = "Marka Eklendi.";
+        public static string BrandDeleted = "Marka Silindi.";
+        public static string BrandUpdated = "Marka Güncellendi..";
+        public static string ColorAdded = "Renk Eklendi.";
+        public static string ColorDeleted = "Renk Silindi.";
+        public static string ColorUpdated = "Renk Güncellendi..";
+        public static string ColorsListed = "Renkler Listelendi.";
+        public static string CustomersListed = "Müşteriler Listelendi.";
         public static string CustomerAdded = "Müşteri Eklendi.";
         public static string CustomerDeleted = "Araba Silindi.";
         public static string CustomerUpdated = "Araba Güncellendi.";
@@ -22,6 +30,6 @@ namespace Business.Constants
         public static string UserAdded = "Kulllanıcı Eklendi.";
         public static string UserDeleted = "Kulllanıcı Silindi.";
         public static string UserUpdated = "Kulllanıcı Güncellendi.";
-
+        public static string UserListed = "Kulllanıcı Listelendi.";
     }
 }

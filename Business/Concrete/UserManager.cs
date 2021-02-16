@@ -21,13 +21,13 @@ namespace Business.Concrete
         public IResult Add(User user)
         {
             _userDal.Add(user);
-            return new SuccessResult(Messages.UserAdded);
+            return new SuccessDataResult<User>(Messages.UserAdded);
         }
 
         public IResult Delete(User user)
         {
             _userDal.Delete(user);
-            return new SuccessResult(Messages.UserDeleted);
+            return new SuccessDataResult<User>(Messages.UserDeleted);
         }
 
         public IDataResult<List<User>> GetAll()
@@ -35,10 +35,16 @@ namespace Business.Concrete
             return new SuccessDataResult<List<User>>(_userDal.GetAll());
         }
 
+        public IDataResult<User> GetById(int userId)
+        {
+            _userDal.Get(p => p.UserId == userId);
+            return new SuccessDataResult<User>(Messages.UserAdded);
+        }
+
         public IResult Update(User user)
         {
             _userDal.Update(user);
-            return new SuccessResult(Messages.UserUpdated);
+            return new SuccessDataResult<User>(Messages.UserUpdated);
         }
     }
 }
