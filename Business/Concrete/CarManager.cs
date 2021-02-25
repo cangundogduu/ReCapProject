@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -24,8 +25,8 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        
 
+        [ValidationAspect(typeof(CarValidator))]
         public IDataResult<List<Car>> GetAll()
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarsListed);
@@ -36,22 +37,23 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(),"Araçlar detaylarına göre listelendi.");
         }
-
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            ValidationTool.Validate(new CarValidator(), car);
-
-
+            
             _carDal.Add(car);
             return new SuccessDataResult<Car>(Messages.CarAdded);
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
         {
            _carDal.Update(car);
             return new SuccessDataResult<Car>(Messages.CarUpdated);
         }
 
+
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Delete(Car car)
         {
             
